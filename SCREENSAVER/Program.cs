@@ -14,7 +14,7 @@ namespace SCREENSAVER
             Vector2 C = new Vector2(200, 400);
             Vector2 Cmove = new Vector2(1, 0);
 
-            Raylib.InitWindow(800,800,"screensaver");
+            Raylib.InitWindow(800, 800, "screensaver");
             while (Raylib.WindowShouldClose() == false)
             {
                 float speed = 80.0f;
@@ -39,14 +39,27 @@ namespace SCREENSAVER
             Raylib.CloseWindow();
         }
 
-        private static Vector2 TarkistaReunat(Vector2 A, Vector2 Amove)
+        private static Vector2 TarkistaReunat(Vector2 position, Vector2 direction)
         {
-            if (A.X > Raylib.GetScreenWidth())
+            // Tarkistetaan, onko A osunut ikkunan reunoihin ja käännetään suunta tarvittaessa
+            if (position.X > Raylib.GetScreenWidth())
             {
-                Amove.X = -1.0f;
+                direction.X = -1.0f;
+            }
+            else if (position.X < 0)
+            {
+                direction.X = 1.0f;
+            }
+            else if (position.Y > Raylib.GetScreenHeight())
+            {
+                direction.Y = -1.0f;
+            }
+            else if (position.Y < 0)
+            {
+                direction.Y = 1.0f;
             }
 
-            return Amove;
+            return direction;
         }
     }
 }
