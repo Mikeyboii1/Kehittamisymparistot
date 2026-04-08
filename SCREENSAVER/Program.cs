@@ -15,6 +15,7 @@ namespace SCREENSAVER
             Vector2 Cmove = new Vector2(3, -3);
 
             Raylib.InitWindow(800, 800, "screensaver");
+            Raylib.SetTargetFPS(30);
             while (Raylib.WindowShouldClose() == false)
             {
                 float speed = 80.0f;
