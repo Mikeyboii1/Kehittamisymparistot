@@ -14,6 +14,16 @@ namespace PONG
             Vector2 player1 = new Vector2(50, 400);
             float speed = 1000.0f;
             float deltaTime = Raylib.GetFrameTime();
+
+            // Pallon aloituspaikka on ruudun keskellä
+            Vector2 ballPosition = Raylib.GetScreenCenter();
+
+            // Pallon suunta normalisoidaan että sen pituudeksi tulee 1
+            Vector2 ballDirection = Vector2.Normalize(new Vector2(1, 0.5f));
+
+            // Pallon nopeuden yksikkö on pikseleitä sekunnissa
+            float ballSpeed = 160;
+
             while (Raylib.WindowShouldClose() == false)
             {
                 Raylib.BeginDrawing();
@@ -58,12 +68,13 @@ namespace PONG
                     }
                 }
 
-                //Tehdään rajat
 
-
-                // Piirrä pallo.
+                Raylib.DrawCircleV(ballPosition, 20 , Color.White);
 
                 Raylib.EndDrawing();
+
+
+                ballPosition = ballPosition + ballDirection * ballSpeed * Raylib.GetFrameTime();
             }
         }
         static bool IsTouchingUp(Vector2 v)
