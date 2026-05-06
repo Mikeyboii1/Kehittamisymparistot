@@ -30,7 +30,10 @@ namespace PONG
                 //liikuta mailoja ylös ja alas.
                 if (Raylib.IsKeyDown(KeyboardKey.Up))
                 {
-                    player2.Y = player2.Y - speed * Raylib.GetFrameTime();
+                    if (IsTouchingUp(player2) == false)
+                    {
+                        player2.Y = player2.Y - speed * Raylib.GetFrameTime();
+                    }
                 }
                 else if (Raylib.IsKeyDown(KeyboardKey.Down))
                 {
@@ -46,10 +49,34 @@ namespace PONG
                     player1.Y = player1.Y + speed * Raylib.GetFrameTime();
                 }
 
+                //Tehdään rajat
+
 
                 // Piirrä pallo.
 
                 Raylib.EndDrawing();
+            }
+        }
+        static bool IsTouchingUp(Vector2 v)
+        {
+            if (v.Y > 0)
+            { 
+                return false;
+            }
+            else
+            {
+                return true; 
+            }
+        }
+        static bool IsTouchingDown(Vector2 v)
+        {
+            if (v.Y > Raylib.GetScreenHeight())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
