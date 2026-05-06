@@ -9,7 +9,8 @@ namespace PONG
         static void Main(string[] args)
         {
             Raylib.InitWindow(800, 800, "screensaver");
-            Raylib.SetTargetFPS(30);
+            Raylib.SetTargetFPS(60);
+            Vector2 player2 = new Vector2(700, 400);
             Vector2 player1 = new Vector2(50, 400);
             while (Raylib.WindowShouldClose() == false)
             {
@@ -23,14 +24,24 @@ namespace PONG
 
 
                 //Piitträ oikean puoleinen maila.
+                Raylib.DrawRectangleV(player2, new Vector2(20, 100), Color.Red);
 
 
                 //liikuta mailoja ylös ja alas.
                 if (Raylib.IsKeyDown(KeyboardKey.Up))
                 {
-                    player1.Y = player1.Y - speed * Raylib.GetFrameTime();
+                    player2.Y = player2.Y - speed * Raylib.GetFrameTime();
                 }
                 else if (Raylib.IsKeyDown(KeyboardKey.Down))
+                {
+                    player2.Y = player2.Y + speed * Raylib.GetFrameTime();
+                }
+
+                if (Raylib.IsKeyDown(KeyboardKey.W))
+                {
+                    player1.Y = player1.Y - speed * Raylib.GetFrameTime();
+                }
+                else if (Raylib.IsKeyDown(KeyboardKey.S))
                 {
                     player1.Y = player1.Y + speed * Raylib.GetFrameTime();
                 }
