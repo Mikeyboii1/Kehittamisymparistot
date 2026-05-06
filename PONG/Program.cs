@@ -12,7 +12,7 @@ namespace PONG
             Raylib.SetTargetFPS(60);
             Vector2 player2 = new Vector2(700, 400);
             Vector2 player1 = new Vector2(50, 400);
-            float speed = 80.0f;
+            float speed = 1000.0f;
             float deltaTime = Raylib.GetFrameTime();
             while (Raylib.WindowShouldClose() == false)
             {
