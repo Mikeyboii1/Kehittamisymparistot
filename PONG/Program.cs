@@ -37,16 +37,25 @@ namespace PONG
                 }
                 else if (Raylib.IsKeyDown(KeyboardKey.Down))
                 {
-                    player2.Y = player2.Y + speed * Raylib.GetFrameTime();
+                    if (IsTouchingDown(player2) == false)
+                    {
+                        player2.Y = player2.Y + speed * Raylib.GetFrameTime();
+                    }
                 }
 
                 if (Raylib.IsKeyDown(KeyboardKey.W))
                 {
-                    player1.Y = player1.Y - speed * Raylib.GetFrameTime();
+                    if (IsTouchingUp(player1) == false)
+                    {
+                        player1.Y = player1.Y - speed * Raylib.GetFrameTime();
+                    }
                 }
                 else if (Raylib.IsKeyDown(KeyboardKey.S))
                 {
-                    player1.Y = player1.Y + speed * Raylib.GetFrameTime();
+                    if (IsTouchingDown(player1) == false)
+                    {
+                        player1.Y = player1.Y + speed * Raylib.GetFrameTime();
+                    }
                 }
 
                 //Tehdään rajat
@@ -70,7 +79,7 @@ namespace PONG
         }
         static bool IsTouchingDown(Vector2 v)
         {
-            if (v.Y > Raylib.GetScreenHeight())
+            if( (v.Y + 100 ) > Raylib.GetScreenHeight())
             {
                 return true;
             }
