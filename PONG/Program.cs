@@ -77,6 +77,17 @@ namespace PONG
                 ballPosition = ballPosition + ballDirection * ballSpeed * Raylib.GetFrameTime();
             }
         }
+        static bool IsTouchingSomething(Vector2 v)
+        {
+            if (IsTouchingUp(v))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         static bool IsTouchingUp(Vector2 v)
         {
             if (v.Y > 0)
